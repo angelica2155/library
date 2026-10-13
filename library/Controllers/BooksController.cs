@@ -13,6 +13,7 @@ public class BooksController : Controller
     {
         _books = books;
     }
+    
 
     // GET /Books : the list of books.
     public async Task<IActionResult> Index()
@@ -20,6 +21,28 @@ public class BooksController : Controller
         var books = await _books.GetAllAsync();
         return View(books);                             // Views/Books/Index.cshtml
     }
+
+    // GET /Books/Create : an empty form.
+    public IActionResult Create()
+    {
+        return View(new Book());
+    }
+
+    // POST /Books/Create : the form was submitted.
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create(Book book)
+    {
+        if (!ModelState.IsValid)                        // a required field was left empty
+        {
+            return View(book);
+        }
+
+        await _books.AddAsync(book);
+        return RedirectToAction(nameof(Index));
+    }
+
+   
 
 
 }
