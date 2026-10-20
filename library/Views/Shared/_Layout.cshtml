@@ -3,66 +3,35 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Library</title>
-
+    <title>@ViewData["Title"] - library</title>
+    <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/library.styles.css" asp-append-version="true" />
 
+    
     <style>
-            /* GENERAL DESIGN */
+            /* Change colors only */
             body {
-                background-color: #eeeeee !important;
-                color: #222222 !important;
-                font-family: Arial, sans-serif;
-                margin: 0;
+                background-color: #eeeeee;
+                color: #222222;
             }
 
-            /* NAVIGATION BAR */
             .navbar {
                 background-color: #222222 !important;
-                border-bottom: 4px solid #e6007e;
-                padding: 15px 0;
+                border-bottom: 3px solid #e6007e;
             }
 
-            .navbar-brand {
-                color: #ff4da6 !important;
-                font-weight: bold;
-                font-size: 24px;
-            }
-
-            .navbar .nav-link {
-                color: #ffffff !important;
-                margin: 0 5px;
-            }
-
-                .navbar .nav-link:hover {
-                    color: #ff4da6 !important;
+                .navbar-brand,
+                .navbar .nav-link {
+                    color: #ffffff !important;
                 }
 
-            /* MAIN CONTENT */
-            main {
-                background-color: #ffffff;
-                padding: 30px;
-                margin-top: 25px;
-                margin-bottom: 25px;
-                border-radius: 10px;
-                box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-                min-height: 350px;
-            }
+                    .navbar-brand:hover,
+                    .navbar .nav-link:hover {
+                        color: #ff4da6 !important;
+                    }
 
-            h1, h2, h3 {
-                color: #222222;
-                font-weight: bold;
-            }
-
-            h1 {
-                border-bottom: 3px solid #e6007e;
-                padding-bottom: 12px;
-                margin-bottom: 25px;
-            }
-
-            /* BUTTONS */
             .btn-primary {
                 background-color: #e6007e !important;
                 border-color: #e6007e !important;
@@ -74,161 +43,68 @@
                     border-color: #b80063 !important;
                 }
 
-            .btn-secondary {
-                background-color: #555555 !important;
-                border-color: #555555 !important;
-                color: #ffffff !important;
+            .table thead th {
+                background-color: #333333;
+                color: #ffffff;
             }
 
-            .btn-warning {
-                background-color: #ff4da6 !important;
-                border-color: #ff4da6 !important;
-                color: #222222 !important;
+            .form-control:focus,
+            .form-select:focus {
+                border-color: #e6007e;
+                box-shadow: 0 0 0 0.2rem rgba(230, 0, 126, 0.2);
             }
 
-            .btn-danger {
-                background-color: #222222 !important;
-                border-color: #222222 !important;
-                color: #ffffff !important;
-            }
-
-            /* TABLES */
-            .table {
-                background-color: #ffffff;
-                vertical-align: middle;
-            }
-
-                .table thead th {
-                    background-color: #222222 !important;
-                    color: #ffffff !important;
-                    border-color: #444444 !important;
-                }
-
-                .table tbody tr:hover {
-                    background-color: #fff0f7 !important;
-                }
-
-                .table td, .table th {
-                    padding: 12px;
-                }
-
-            /* FORMS */
-            .form-control,
-            .form-select {
-                border: 1px solid #cccccc;
-                border-radius: 6px;
-                padding: 10px;
-            }
-
-                .form-control:focus,
-                .form-select:focus {
-                    border-color: #e6007e !important;
-                    box-shadow: 0 0 0 0.2rem rgba(230, 0, 126, 0.2) !important;
-                }
-
-            label, .form-label {
-                font-weight: bold;
-                color: #333333;
-            }
-
-            /* LINKS */
-            a {
-                color: #c00068;
-            }
-
-                a:hover {
-                    color: #e6007e;
-                }
-
-            /* FOOTER */
             footer {
                 background-color: #222222;
                 color: #ffffff;
-                border-top: 4px solid #e6007e;
-                padding: 20px 0;
-                margin-top: 30px;
-            }
-
-                footer a {
-                    color: #ff4da6 !important;
-                }
-
-            /* SMALL SCREENS */
-            @@media (max-width: 576px) {
-                main {
-                    padding: 18px;
-                    margin-top: 15px;
-                }
-
-                h1 {
-                    font-size: 25px;
-                }
-
-                .table {
-                    font-size: 13px;
-                }
-
-                .navbar-brand {
-                    font-size: 21px;
-                }
+                border-top: 3px solid #e6007e;
             }
     </style>
+    
 </head>
-
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-dark">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
-                    My Library
-                </a>
-
-                <button class="navbar-toggler" type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#mainNavbar"
-                        aria-controls="mainNavbar"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">library</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Books" asp-action="Index">Books</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Member" asp-action="Index">Members</a>
+                        </li>
 
-                <div class="collapse navbar-collapse" id="mainNavbar">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Book" asp-action="Index">Books</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Member" asp-action="Index">Members</a>
-                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-
     <div class="container">
-        <main role="main">
+        <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer>
-        <div class="container text-center">
-            &copy; @DateTime.Now.Year - My Library
-            | <a asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2026 - library - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
