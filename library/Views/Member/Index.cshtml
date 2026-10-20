@@ -1,0 +1,49 @@
+﻿@model IEnumerable<library.Models.Member>
+
+@{
+    ViewData["Title"] = "Members";
+}
+
+<h1>Members</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add Member</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Member ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Member Type</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var member in Model)
+        {
+            <tr>
+                <td>@member.MemberId</td>
+                <td>@member.FullName</td>
+                <td>@member.Email</td>
+                <td>@member.MemberType</td>
+                <td>
+                    <a asp-controller="Member"
+                       asp-action="Edit"
+                       asp-route-id="@member.MemberId"
+                       class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+
+                    <a asp-controller="Member"
+                       asp-action="Delete"
+                       asp-route-id="@member.MemberId"
+                       class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
