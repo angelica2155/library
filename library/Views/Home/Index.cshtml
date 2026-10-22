@@ -2,7 +2,69 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div style="text-align:center; padding:30px 10px;">
+
+    <h1 style="font-family:Impact,sans-serif !important;
+        font-size:48px !important;
+        color:#e6007e !important;
+        font-weight:normal !important;">
+        Welcome to My Library
+    </h1>
+
+    <p style="font-family:'Courier New',monospace !important;
+        font-size:20px !important;
+        color:#333333 !important;">
+        Your gateway to knowledge, learning, and discovery.
+    </p>
+
+    <div style="max-width:700px; margin:30px auto;">
+        <p style="font-family:'Courier New',monospace !important;
+            font-size:17px !important;
+            line-height:1.9 !important;
+            text-align:center !important;">
+            Welcome to My Library! Our library system helps you manage
+            books and member information in one convenient place.
+            Explore our collection and discover new knowledge.
+        </p>
+    </div>
+
+    <h3 style="font-family:Impact,sans-serif !important;
+        font-size:30px !important;
+        font-weight:normal !important;
+        color:#222222 !important;">
+        What would you like to do today?
+    </h3>
+
+    <p style="font-family:'Courier New',monospace !important;">
+        Choose an option below to get started.
+    </p>
+
+    <div style="display:flex;
+        justify-content:center;
+        gap:15px;
+        flex-wrap:wrap;
+        margin-top:25px;">
+
+        <a asp-controller="Book"
+           asp-action="Index"
+           class="btn btn-primary">
+            Manage Books
+        </a>
+
+        <a asp-controller="Member"
+           asp-action="Index"
+           class="btn btn-primary">
+            Manage Members
+        </a>
+
+    </div>
+
+    <p style="font-family:'Courier New',monospace !important;
+        font-size:16px !important;
+        font-style:italic !important;
+        color:#777777 !important;
+        margin-top:40px;">
+        Every book opens a new world of possibilities.
+    </p>
+
 </div>

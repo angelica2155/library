@@ -8,6 +8,59 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/library.styles.css" asp-append-version="true" />
+
+    
+    <style>
+            /* Change colors only */
+            body {
+                background-color: #eeeeee;
+                color: #222222;
+            }
+
+            .navbar {
+                background-color: #222222 !important;
+                border-bottom: 3px solid #e6007e;
+            }
+
+                .navbar-brand,
+                .navbar .nav-link {
+                    color: #ffffff !important;
+                }
+
+                    .navbar-brand:hover,
+                    .navbar .nav-link:hover {
+                        color: #ff4da6 !important;
+                    }
+
+            .btn-primary {
+                background-color: #e6007e !important;
+                border-color: #e6007e !important;
+                color: #ffffff !important;
+            }
+
+                .btn-primary:hover {
+                    background-color: #b80063 !important;
+                    border-color: #b80063 !important;
+                }
+
+            .table thead th {
+                background-color: #333333;
+                color: #ffffff;
+            }
+
+            .form-control:focus,
+            .form-select:focus {
+                border-color: #e6007e;
+                box-shadow: 0 0 0 0.2rem rgba(230, 0, 126, 0.2);
+            }
+
+            footer {
+                background-color: #222222;
+                color: #ffffff;
+                border-top: 3px solid #e6007e;
+            }
+    </style>
+    
 </head>
 <body>
     <header>
@@ -26,6 +79,13 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Books" asp-action="Index">Books</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Member" asp-action="Index">Members</a>
+                        </li>
+
                     </ul>
                 </div>
             </div>
