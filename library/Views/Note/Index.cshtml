@@ -1,0 +1,84 @@
+﻿@model IEnumerable<library.Models.Note>
+
+@{
+    ViewData["Title"] = "Library Notes";
+}
+
+<style>
+    .notes-page {
+        padding: 25px;
+        color: #333;
+    }
+
+        .notes-page h1 {
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .notes-page .subtitle {
+            color: #777;
+            margin-bottom: 24px;
+        }
+
+        .notes-page .add-button {
+            display: inline-block;
+            background: #333;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+
+    .notes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 18px;
+    }
+
+    .note-card {
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 18px;
+        overflow-wrap: anywhere;
+    }
+
+        .note-card h3 {
+            margin-top: 0;
+        }
+
+    .note-date {
+        color: #777;
+        font-size: 0.9rem;
+    }
+
+    .note-actions a {
+        display: inline-block;
+        margin-right: 12px;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="notes-page">
+    <h1>My Library Notes</h1>
+    <p class="subtitle">Keep track of reminders and library tasks.</p>
+
+    <a asp-action="Create" class="add-button">+ Add Note</a>
+
+    <div class="notes-grid">
+        @foreach (var note in Model)
+        {
+            <div class="note-card">
+                <h3>@note.Title</h3>
+                <p>@(string.IsNullOrWhiteSpace(note.Body) ? "No details added." : note.Body)</p>
+                <p class="note-date">Created: @note.CreatedOn.ToString("MMM dd, yyyy")</p>
+
+                <div class="note-actions">
+                    <a asp-action="Edit" asp-route-id="@note.NoteId">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@note.NoteId">Delete</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
