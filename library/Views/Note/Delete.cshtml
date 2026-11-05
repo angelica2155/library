@@ -1,0 +1,67 @@
+﻿@model library.Models.Note
+
+@{
+    ViewData["Title"] = "Delete Note";
+}
+
+<style>
+    .delete-note-page {
+        max-width: 600px;
+        margin: 35px auto;
+        padding: 28px;
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+    }
+
+        .delete-note-page h1 {
+            color: #a32626;
+        }
+
+        .delete-note-page .note-details {
+            background: white;
+            padding: 18px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin: 20px 0;
+            overflow-wrap: anywhere;
+        }
+
+        .delete-note-page button,
+        .delete-note-page .back-link {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-right: 8px;
+        }
+
+        .delete-note-page button {
+            background: #a32626;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .delete-note-page .back-link {
+            background: #ddd;
+            color: #333;
+        }
+</style>
+
+<div class="delete-note-page">
+    <h1>Delete Note</h1>
+    <p>Are you sure you want to delete this note?</p>
+
+    <div class="note-details">
+        <h3>@Model.Title</h3>
+        <p>@(string.IsNullOrWhiteSpace(Model.Body) ? "No details added." : Model.Body)</p>
+        <p><strong>Created:</strong> @Model.CreatedOn.ToString("MMM dd, yyyy")</p>
+    </div>
+
+    <form asp-action="Delete" asp-route-id="@Model.NoteId" method="post">
+        <input asp-for="NoteId" type="hidden" />
+        <button type="submit">Yes, Delete Note</button>
+        <a asp-action="Index" class="back-link">Cancel</a>
+    </form>
+</div>
