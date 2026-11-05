@@ -1,0 +1,87 @@
+﻿@model library.Models.Note
+
+@{
+    ViewData["Title"] = "Edit Note";
+}
+
+<style>
+    .note-form-page {
+        max-width: 650px;
+        margin: 30px auto;
+        padding: 25px;
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+    }
+
+        .note-form-page h1 {
+            margin-bottom: 20px;
+        }
+
+        .note-form-page label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .note-form-page input,
+        .note-form-page textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .note-form-page textarea {
+            min-height: 130px;
+        }
+
+        .note-form-page button,
+        .note-form-page .back-link {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-right: 8px;
+        }
+
+        .note-form-page button {
+            background: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .note-form-page .back-link {
+            background: #ddd;
+            color: #333;
+        }
+
+    .validation-error {
+        color: #b00020;
+    }
+</style>
+
+<div class="note-form-page">
+    <h1>Edit Note</h1>
+
+    <form asp-action="Edit" asp-route-id="@Model.NoteId" method="post">
+        <input asp-for="NoteId" type="hidden" />
+        <div asp-validation-summary="ModelOnly" class="validation-error"></div>
+
+        <label asp-for="Title">Note Title</label>
+        <input asp-for="Title" maxlength="100" required />
+        <span asp-validation-for="Title" class="validation-error"></span>
+
+        <label asp-for="Body">Details (optional)</label>
+        <textarea asp-for="Body"></textarea>
+
+        <label asp-for="CreatedOn">Date</label>
+        <input asp-for="CreatedOn" type="date" required />
+
+        <button type="submit">Update Note</button>
+        <a asp-action="Index" class="back-link">Cancel</a>
+    </form>
+</div>
