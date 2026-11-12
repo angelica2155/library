@@ -9,7 +9,6 @@ public class MemberController : Controller
 {
     private readonly MemberRepository _members;
 
-    // ASP.NET Core provides the repository registered in Program.cs.
     public MemberController(MemberRepository members)
     {
         _members = members;
@@ -38,8 +37,16 @@ public class MemberController : Controller
             return View(member);
         }
 
-        await _members.AddAsync(member);
-        return RedirectToAction(nameof(Index));
+        try
+        {
+            await _members.AddAsync(member);
+            return RedirectToAction(nameof(Index));
+        }
+        catch (PostgresException ex) when (ex.SqlState == PostgresErrorCodes.UniqueViolation)
+        {
+            ModelState.AddModelError("Email", "Another member already uses this email.");
+            return View(member);
+        }
     }
 
     // GET /Member/Edit/5 : the form, filled with member 5.
@@ -55,34 +62,8 @@ public class MemberController : Controller
         return View(member);
     }
 
-    // POST /Member/Edit/5 : the changed form was submitted.
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(Member member)
-    {
-        if (!ModelState.IsValid)
-        {
-            return View(member);
-        }
 
-        var existingMember =
-            await _members.GetByIdAsync(member.MemberId);
-
-        if (existingMember == null)
-        {
-            return NotFound();
-        }
-
-        existingMember.FullName = member.FullName;
-        existingMember.Email = member.Email;
-        existingMember.MemberType = member.MemberType;
-
-        await _members.UpdateAsync(existingMember);
-
-        return RedirectToAction(nameof(Index));
-    }
-
-    // GET /Member/Delete/5 : ask for confirmation.
+    // GET /Member/Delete/5 : show the confirmation page
     public async Task<IActionResult> Delete(long id)
     {
         var member = await _members.GetByIdAsync(id);
@@ -95,20 +76,30 @@ public class MemberController : Controller
         return View(member);
     }
 
-    // POST /Member/Delete/5 : the delete was confirmed.
+    // POST /Members/Delete/5 : the delete was confirmed.
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(long id)
     {
-        var member = await _members.GetByIdAsync(id);
-
-        if (member == null)
+        try
         {
-            return NotFound();
+            await _members.DeleteAsync(id);
         }
+        catch (PostgresException ex) when (ex.SqlState == PostgresErrorCodes.ForeignKeyViolation
 
-        await _members.DeleteAsync(id);
+)
+        {
+            // 3. Load the member again, to show them on the page.
+            var member = await _members.GetByIdAsync(id);
+            if (member == null)
+            {
+                return NotFound();
+            }
+            ViewBag.Error = "This member has loans on record, so the database will not delete them.";
+            return View("Delete", member);
+        }
 
         return RedirectToAction(nameof(Index));
     }
 }
+
