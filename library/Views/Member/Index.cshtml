@@ -17,6 +17,7 @@
             <th>Full Name</th>
             <th>Email</th>
             <th>Member Type</th>
+            <th class="text-end">Books out</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -28,6 +29,7 @@
                 <td>@member.FullName</td>
                 <td>@member.Email</td>
                 <td>@member.MemberType</td>
+                <td class="text-end">@member.OpenLoans</td>
                 <td>
                     <a asp-controller="Member"
                        asp-action="Edit"
