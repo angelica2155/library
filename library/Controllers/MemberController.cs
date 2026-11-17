@@ -8,11 +8,16 @@ namespace library.Controllers;
 public class MemberController : Controller
 {
     private readonly MemberRepository _members;
+    private readonly LoanRepository _loans;
 
-    public MemberController(MemberRepository members)
+    // ASP.NET Core hands in the repositories, because Program.cs registered them.
+    public MemberController(MemberRepository members, LoanRepository loans)
     {
         _members = members;
+        _loans = loans;
     }
+    
+
 
     // GET /Member : the list of members.
     public async Task<IActionResult> Index()
@@ -126,5 +131,30 @@ public class MemberController : Controller
 
         return RedirectToAction(nameof(Index));
     }
+
+    // GET /Members/Details/5 : one member and their loans.
+    public async Task<IActionResult> Details(long id)
+    {
+        // 1. Load the member.
+        var member = await _members.GetByIdAsync(id);
+
+        if (/* 2. there is no such member */
+            member == null)
+        {
+            // 3. Answer "not found".
+            return NotFound();
+        }
+
+        // 4. Put the member and their loans together for the page.
+        var details = new MemberDetails
+        {
+            Member = member,
+            Loans = await _loans.GetByMemberAsync(id)
+        };
+
+        // 5. Show the page.
+        return View(details);
+    }
+
 }
 
