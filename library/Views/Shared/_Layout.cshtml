@@ -1,118 +1,193 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - library</title>
+
+    <title>@ViewData["Title"] - MeowLibrary</title>
+
     <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/library.styles.css" asp-append-version="true" />
 
-    
-    <style>
-            /* Change colors only */
-            body {
-                background-color: #eeeeee;
-                color: #222222;
-            }
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 
-            .navbar {
-                background-color: #222222 !important;
-                border-bottom: 3px solid #e6007e;
-            }
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-                .navbar-brand,
-                .navbar .nav-link {
-                    color: #ffffff !important;
-                }
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap"
+          rel="stylesheet">
 
-                    .navbar-brand:hover,
-                    .navbar .nav-link:hover {
-                        color: #ff4da6 !important;
-                    }
+    <!-- Website Styles -->
+    <link rel="stylesheet"
+          href="~/css/site.css"
+          asp-append-version="true" />
 
-            .btn-primary {
-                background-color: #e6007e !important;
-                border-color: #e6007e !important;
-                color: #ffffff !important;
-            }
-
-                .btn-primary:hover {
-                    background-color: #b80063 !important;
-                    border-color: #b80063 !important;
-                }
-
-            .table thead th {
-                background-color: #333333;
-                color: #ffffff;
-            }
-
-            .form-control:focus,
-            .form-select:focus {
-                border-color: #e6007e;
-                box-shadow: 0 0 0 0.2rem rgba(230, 0, 126, 0.2);
-            }
-
-            footer {
-                background-color: #222222;
-                color: #ffffff;
-                border-top: 3px solid #e6007e;
-            }
-    </style>
-
+    <link rel="stylesheet"
+          href="~/library.styles.css"
+          asp-append-version="true" />
 </head>
+
 <body>
+
+    <!-- FALLING FLOWERS -->
+    <div class="flower-container" aria-hidden="true">
+        <span class="falling-flower flower-1">✿</span>
+        <span class="falling-flower flower-2">✿</span>
+        <span class="falling-flower flower-3">❀</span>
+        <span class="falling-flower flower-4">✿</span>
+        <span class="falling-flower flower-5">❀</span>
+        <span class="falling-flower flower-6">✿</span>
+        <span class="falling-flower flower-7">❀</span>
+        <span class="falling-flower flower-8">✿</span>
+        <span class="falling-flower flower-9">❀</span>
+        <span class="falling-flower flower-10">✿</span>
+        <span class="falling-flower flower-11">❀</span>
+        <span class="falling-flower flower-12">✿</span>
+    </div>
+
+    <!-- NAVIGATION BAR -->
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">library</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid px-3 px-md-5">
+
+                <!-- BRAND -->
+                <a class="navbar-brand"
+                   asp-controller="Home"
+                   asp-action="Index">
+
+                    <span class="brand-flower">✿</span>
+                    <span class="brand-highlight">MYLibrary</span>
+                </a>
+
+                <!-- MOBILE TOGGLE -->
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#mainNavbar"
+                        aria-controls="mainNavbar"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+
+                <!-- MENU -->
+                <div class="collapse navbar-collapse" id="mainNavbar">
+
+                    <ul class="navbar-nav ms-auto align-items-lg-center">
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Books" asp-action="Index">Books</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Member" asp-action="Index">Members</a>
+                            <a class="nav-link"
+                               asp-controller="Home"
+                               asp-action="Index">
+                                <span class="nav-icon">⌂</span> Home
+                            </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Loans" asp-action="Index">Loans</a>
+                            <a class="nav-link"
+                               asp-controller="Books"
+                               asp-action="Index">
+                                <span class="nav-icon">▤</span> Books
+                            </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Note" asp-action="Index">Notes</a>
+                            <a class="nav-link"
+                               asp-controller="Member"
+                               asp-action="Index">
+                                <span class="nav-icon">♧</span> Members
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-controller="Loans"
+                               asp-action="Index">
+                                <span class="nav-icon">↗</span> Loans
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-controller="Note"
+                               asp-action="Index">
+                                <span class="nav-icon">✎</span> Notes
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-controller="Home"
+                               asp-action="Privacy">
+                                Privacy
+                            </a>
                         </li>
 
                     </ul>
                 </div>
+
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+
+    <!-- MAIN CONTENT -->
+    <div class="container-fluid main-container px-3 px-md-5">
+
+        <main role="main">
             @RenderBody()
         </main>
+
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - library - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <div class="container-fluid px-3 px-md-5">
+
+            <div class="footer-content">
+
+                <div>
+                    <div class="footer-brand">
+                        <span>✿</span> MYLibrary
+                    </div>
+
+                    <small>
+                        A little place for stories, knowledge, and imagination.
+                    </small>
+                </div>
+
+                <div class="footer-right">
+
+                    <a asp-controller="Home"
+                       asp-action="Privacy">
+                        Privacy Policy
+                    </a>
+
+                    <small>
+                        © 2026 MYLibrary. All Rights Reserved.
+                    </small>
+
+                </div>
+
+            </div>
+
         </div>
+
     </footer>
+
+    <!-- JAVASCRIPT -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="~/js/site.js"
+            asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>

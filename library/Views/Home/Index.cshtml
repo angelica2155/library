@@ -6,7 +6,7 @@
 
     <h1 style="font-family:Impact,sans-serif !important;
         font-size:48px !important;
-        color:#e6007e !important;
+        color:darkgreen !important;
         font-weight:normal !important;">
         Welcome to My Library
     </h1>
@@ -45,18 +45,6 @@
         flex-wrap:wrap;
         margin-top:25px;">
 
-        <a asp-controller="Book"
-           asp-action="Index"
-           class="btn btn-primary">
-            Manage Books
-        </a>
-
-        <a asp-controller="Member"
-           asp-action="Index"
-           class="btn btn-primary">
-            Manage Members
-        </a>
-
     </div>
 
     <p style="font-family:'Courier New',monospace !important;
@@ -68,3 +56,66 @@
     </p>
 
 </div>
+@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="intro">
+    <span class="pill">Reading season is open</span>
+    <h1>Stories that <span class="blue">bloom</span> on every page.</h1>
+    <p class="lead">Browse thousands of books, reserve your next favorite, and join reading circles in a calm, light-filled space made for slow afternoons and curious minds.</p>
+</section>
+
+<section class="art" aria-hidden="true">
+    <div class="shape"></div>
+    <div class="big"><svg viewBox="0 0 100 100" width="360" height="360"><use href="#fRed" /></svg></div>
+    <div class="small"><svg viewBox="0 0 100 100" width="150" height="150"><use href="#fBlue" /></svg></div>
+    <div class="leaf1"><svg viewBox="0 0 100 100" width="120" height="120"><use href="#leaf" /></svg></div>
+    <div class="leaf2"><svg viewBox="0 0 100 100" width="96" height="96"><use href="#leaf" /></svg></div>
+</section>
+
+
+
+<section class="features">
+
+    <!-- EXPLORE LIBRARY -->
+    <a class="feature-card green"
+       asp-controller="Books"
+       asp-action="Index">
+
+        <div class="card-icon">📚</div>
+        <h3>EXPLORE LIBRARY</h3>
+        <p>Find your next favorite story and bring it home with you!</p>
+        <span class="card-link">Explore books →</span>
+
+    </a>
+
+
+    <!-- RESERVE OR BORROW -->
+    <a class="feature-card blue"
+       asp-controller="Loans"
+       asp-action="Index">
+
+        <div class="card-icon">💌</div>
+        <h3>RESERVE OR BORROW</h3>
+        <p>Save your favorite book and pick it up when you're ready.</p>
+        <span class="card-link">Click to reserve or borrow →</span>
+
+    </a>
+
+
+    <!-- FAVORITE BOOK NOTES -->
+    <a class="feature-card mint"
+       asp-controller="Note"
+       asp-action="Index">
+
+        <div class="card-icon">🌷</div>
+        <h3>FAVORITE BOOK NOTES</h3>
+        <p>Share stories, discover new ideas, and write notes about your favorite books.</p>
+        <span class="card-link">Click to place a note →</span>
+
+    </a>
+
+</section>
+
+

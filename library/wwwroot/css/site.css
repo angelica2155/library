@@ -1,31 +1,633 @@
+
+/* =========================================
+   MEOWLIBRARY - PASTEL FLOWER THEME
+   Light Green | Light Blue | Flower Red
+========================================= */
+
+:root {
+    --mint: #dff3e5;
+    --mint-dark: #a8d8b9;
+    --green: #528b6a;
+    --blue: #dceefa;
+    --blue-dark: #80b9dc;
+    --red: #e85b63;
+    --red-light: #ff9298;
+    --cream: #fbfff9;
+    --white: #ffffff;
+    --text: #405b50;
+    --muted: #84988e;
+    --shadow: 0 8px 30px rgba(75, 130, 105, 0.10);
+}
+
+/* GLOBAL */
+
+* {
+    box-sizing: border-box;
+}
+
 html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Nunito', sans-serif;
+    color: var(--text);
+    background: radial-gradient(circle at 5% 10%, #e7f7ed 0, transparent 30%), radial-gradient(circle at 95% 25%, #e7f3fc 0, transparent 32%), linear-gradient(135deg, #f8fff9, #f2faff);
+    overflow-x: hidden;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* =========================================
+   NAVIGATION BAR
+========================================= */
+
+.navbar {
+    position: relative;
+    z-index: 20;
+    padding: 17px 0;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(168, 216, 185, 0.35);
+    box-shadow: 0 4px 20px rgba(65, 120, 95, 0.06);
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    font-weight: 800;
+    color: var(--green) !important;
+    letter-spacing: -0.7px;
 }
+
+.brand-flower {
+    color: var(--red);
+    font-size: 32px;
+    margin-right: 5px;
+    animation: flower-spin 8s linear infinite;
+}
+
+.brand-highlight {
+    color: #78a9cc;
+}
+
+.navbar-nav {
+    gap: 7px;
+}
+
+.navbar .nav-link {
+    position: relative;
+    padding: 11px 15px !important;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 800;
+    color: #607b70 !important;
+    transition: all 0.3s ease;
+}
+
+    .navbar .nav-link:hover {
+        background: var(--mint);
+        color: var(--green) !important;
+        transform: translateY(-2px);
+    }
+
+.nav-icon {
+    color: var(--red);
+    margin-right: 4px;
+    font-size: 16px;
+}
+
+.navbar-toggler {
+    border: 1px solid var(--mint-dark);
+    border-radius: 10px;
+    padding: 8px;
+}
+
+    .navbar-toggler:focus {
+        box-shadow: 0 0 0 3px rgba(168, 216, 185, 0.3);
+    }
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.main-container {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    padding-top: 35px;
+    padding-bottom: 55px;
+}
+
+/* =========================================
+   GENERAL TYPOGRAPHY
+========================================= */
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Playfair Display', serif;
+    color: #528b6a;
+    font-weight: 700;
+}
+
+p {
+    color: #71877c;
+    line-height: 1.8;
+}
+
+small {
+    color: var(--muted);
+}
+
+/* =========================================
+   CARDS
+========================================= */
+
+.card {
+    border: 1px solid rgba(168, 216, 185, 0.35);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 14px 35px rgba(75, 130, 105, 0.15);
+    }
+
+.card-header {
+    background: var(--mint);
+    color: var(--green);
+    border-bottom: 1px solid #c9e8d3;
+    font-weight: 800;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.btn {
+    border-radius: 11px;
+    padding: 9px 18px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    transition: all 0.25s ease;
+}
+
+.btn-primary {
+    background: #78acd0;
+    border-color: #78acd0;
+    color: white;
+}
+
+    .btn-primary:hover {
+        background: #5994bd;
+        border-color: #5994bd;
+        transform: translateY(-2px);
+    }
+
+.btn-success {
+    background: #79b991;
+    border-color: #79b991;
+}
+
+    .btn-success:hover {
+        background: #579d73;
+        border-color: #579d73;
+        transform: translateY(-2px);
+    }
+
+.btn-danger {
+    background: var(--red);
+    border-color: var(--red);
+}
+
+    .btn-danger:hover {
+        background: #ce454e;
+        border-color: #ce454e;
+        transform: translateY(-2px);
+    }
+
+/* =========================================
+   TABLES
+========================================= */
+
+.table {
+    color: var(--text);
+    vertical-align: middle;
+}
+
+    .table thead th {
+        background: #e5f4e9;
+        color: #528b6a;
+        border-bottom: 2px solid #c6e4d0;
+        padding: 15px;
+        font-weight: 900;
+    }
+
+    .table tbody td {
+        padding: 14px;
+        border-color: #edf4ef;
+    }
+
+    .table tbody tr:hover {
+        background: #f1faf4;
+    }
+
+/* =========================================
+   FORM INPUTS
+========================================= */
+
+.form-control,
+.form-select {
+    border: 1px solid #d5e9dd;
+    border-radius: 11px;
+    padding: 11px 14px;
+    color: var(--text);
+    background: #ffffff;
+    font-family: 'Nunito', sans-serif;
+}
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #8ec5a1;
+        box-shadow: 0 0 0 4px rgba(142, 197, 161, 0.18);
+    }
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.site-footer {
+    position: relative;
+    z-index: 5;
+    background: linear-gradient(110deg, #e1f3e7, #e4f1fa);
+    border-top: 1px solid #d5eadd;
+    padding: 27px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 21px;
+    font-weight: 800;
+    color: var(--green);
+    margin-bottom: 5px;
+}
+
+    .footer-brand span {
+        color: var(--red);
+        font-size: 25px;
+    }
+
+.footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 7px;
+}
+
+    .footer-right a {
+        color: #5989ad;
+        text-decoration: none;
+        font-weight: 800;
+    }
+
+        .footer-right a:hover {
+            color: var(--red);
+        }
+
+/* =========================================
+   LARGE FALLING FLOWERS
+========================================= */
+
+.flower-container {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.falling-flower {
+    position: absolute;
+    top: -100px;
+    display: block;
+    color: var(--red);
+    font-family: serif;
+    font-size: 43px;
+    opacity: 0.75;
+    text-shadow: 0 3px 8px rgba(232, 91, 99, 0.15);
+    animation: falling-flower linear infinite;
+}
+
+/* Individual flower positions, sizes and speeds */
+
+.flower-1 {
+    left: 5%;
+    font-size: 48px;
+    animation-duration: 13s;
+    animation-delay: 0s;
+}
+
+.flower-2 {
+    left: 14%;
+    font-size: 36px;
+    color: #ff9298;
+    animation-duration: 17s;
+    animation-delay: -7s;
+}
+
+.flower-3 {
+    left: 24%;
+    font-size: 55px;
+    animation-duration: 15s;
+    animation-delay: -3s;
+}
+
+.flower-4 {
+    left: 35%;
+    font-size: 42px;
+    color: #df505b;
+    animation-duration: 19s;
+    animation-delay: -11s;
+}
+
+.flower-5 {
+    left: 45%;
+    font-size: 50px;
+    animation-duration: 14s;
+    animation-delay: -5s;
+}
+
+.flower-6 {
+    left: 56%;
+    font-size: 37px;
+    color: #ff9298;
+    animation-duration: 18s;
+    animation-delay: -9s;
+}
+
+.flower-7 {
+    left: 66%;
+    font-size: 53px;
+    animation-duration: 16s;
+    animation-delay: -2s;
+}
+
+.flower-8 {
+    left: 76%;
+    font-size: 44px;
+    color: #df505b;
+    animation-duration: 20s;
+    animation-delay: -13s;
+}
+
+.flower-9 {
+    left: 85%;
+    font-size: 58px;
+    animation-duration: 15s;
+    animation-delay: -6s;
+}
+
+.flower-10 {
+    left: 94%;
+    font-size: 40px;
+    animation-duration: 17s;
+    animation-delay: -10s;
+}
+
+.flower-11 {
+    left: 40%;
+    font-size: 34px;
+    animation-duration: 21s;
+    animation-delay: -15s;
+}
+
+.flower-12 {
+    left: 72%;
+    font-size: 46px;
+    animation-duration: 19s;
+    animation-delay: -17s;
+}
+
+/* Falling and rotating movement */
+
+@keyframes falling-flower {
+
+    0% {
+        transform: translate3d(0, -10vh, 0) rotate(0deg);
+    }
+
+    25% {
+        transform: translate3d(45px, 25vh, 0) rotate(100deg);
+    }
+
+    50% {
+        transform: translate3d(-35px, 55vh, 0) rotate(210deg);
+    }
+
+    75% {
+        transform: translate3d(40px, 80vh, 0) rotate(300deg);
+    }
+
+    100% {
+        transform: translate3d(-20px, 115vh, 0) rotate(420deg);
+    }
+}
+
+@keyframes flower-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 991px) {
+
+    .navbar-nav {
+        padding-top: 15px;
+        align-items: stretch !important;
+    }
+
+    .navbar .nav-link {
+        padding: 12px 15px !important;
+    }
+
+    .main-container {
+        padding-top: 25px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-right {
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .navbar-brand {
+        font-size: 23px;
+    }
+
+    .brand-flower {
+        font-size: 28px;
+    }
+
+    .main-container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .falling-flower {
+        font-size: 32px;
+    }
+
+    .flower-3,
+    .flower-7,
+    .flower-9 {
+        font-size: 43px;
+    }
+}
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .falling-flower,
+    .brand-flower {
+        animation: none;
+    }
+
+    .card,
+    .btn,
+    .nav-link {
+        transition: none;
+    }
+}
+
+
+/* FEATURES SECTION */
+.features {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 40px;
+    padding: 60px 30px;
+    flex-wrap: wrap;
+}
+
+/* FEATURE CARD BOX */
+.feature-card {
+    width: 290px;
+    min-height: 280px;
+    padding: 30px 25px;
+    border-radius: 25px;
+    text-decoration: none !important;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid;
+    box-shadow: 0 5px 15px rgba(80, 120, 100, 0.12);
+    transition: all 0.3s ease;
+}
+
+    /* LIGHT GREEN */
+    .feature-card.green {
+        background: #eff9f0;
+        border-color: #b9dfc1;
+        color: #426b4c;
+    }
+
+    /* BABY BLUE */
+    .feature-card.blue {
+        background: #edf5ff;
+        border-color: #bfd8f5;
+        color: #456b91;
+    }
+
+    /* MINT GREEN */
+    .feature-card.mint {
+        background: #eaf8f3;
+        border-color: #b8dfd1;
+        color: #477566;
+    }
+
+    /* ICONS */
+    .feature-card .card-icon {
+        font-size: 45px;
+        margin-bottom: 15px;
+    }
+
+    /* HEADINGS */
+    .feature-card h3 {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 12px;
+    }
+
+    /* DESCRIPTION */
+    .feature-card p {
+        font-size: 14px;
+        line-height: 1.8;
+        margin-bottom: 20px;
+    }
+
+    /* CARD LINK */
+    .feature-card .card-link {
+        font-size: 13px;
+        font-weight: bold;
+        margin-top: auto;
+    }
+
+    /* HOVER EFFECT */
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 25px rgba(80, 120, 100, 0.20);
+    }
+
+        .feature-card:hover .card-icon {
+            transform: scale(1.15);
+            transition: 0.3s ease;
+        }
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+    .features {
+        gap: 25px;
+        padding: 35px 15px;
+    }
+
+    .feature-card {
+        width: 100%;
+        max-width: 330px;
+    }
+}
+
+

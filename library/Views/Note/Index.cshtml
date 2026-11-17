@@ -5,80 +5,252 @@
 }
 
 <style>
-    .notes-page {
-        padding: 25px;
-        color: #333;
+    body {
+        background: #f7fbf8;
     }
 
-        .notes-page h1 {
+    .notes-page {
+        padding: 45px 30px;
+        max-width: 1200px;
+        margin: auto;
+        color: #40564b;
+    }
+
+    /* HEADER */
+    .notes-header {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+        .notes-header .decoration {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .notes-header h1 {
+            font-size: 36px;
             font-weight: 700;
-            margin-bottom: 8px;
+            color: #426b50;
+            margin-bottom: 10px;
         }
 
-        .notes-page .subtitle {
-            color: #777;
-            margin-bottom: 24px;
+        .notes-header .subtitle {
+            color: #81938a;
+            font-size: 16px;
         }
 
-        .notes-page .add-button {
-            display: inline-block;
-            background: #333;
-            color: white;
-            padding: 10px 18px;
-            border-radius: 6px;
-            text-decoration: none;
-            margin-bottom: 20px;
+    /* ADD NOTE BUTTON */
+    .add-button {
+        display: inline-block;
+        background: #a8d5b5;
+        color: #315b3e !important;
+        padding: 12px 24px;
+        border-radius: 30px;
+        text-decoration: none !important;
+        font-weight: 600;
+        margin-bottom: 30px;
+        border: 2px solid #91c7a1;
+        transition: 0.3s ease;
+    }
+
+        .add-button:hover {
+            background: #91c7a1;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(100, 150, 110, 0.2);
         }
 
+    /* NOTES GRID */
     .notes-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-        gap: 18px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 28px;
     }
 
+    /* NOTE CARD */
     .note-card {
-        background: #f5f5f5;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        padding: 18px;
+        padding: 25px;
+        border-radius: 20px;
+        min-height: 220px;
         overflow-wrap: anywhere;
+        position: relative;
+        border: 2px solid;
+        box-shadow: 0 5px 15px rgba(100, 130, 120, 0.10);
+        transition: all 0.3s ease;
     }
 
-        .note-card h3 {
-            margin-top: 0;
+        .note-card:nth-child(3n+1) {
+            background: #eff9f0;
+            border-color: #c5e6cc;
         }
 
-    .note-date {
-        color: #777;
-        font-size: 0.9rem;
+        .note-card:nth-child(3n+2) {
+            background: #edf5ff;
+            border-color: #c9def7;
+        }
+
+        .note-card:nth-child(3n+3) {
+            background: #eaf8f3;
+            border-color: #c1e5d7;
+        }
+
+        .note-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 25px rgba(100, 130, 120, 0.16);
+        }
+
+    /* NOTE DECORATION */
+    .note-decoration {
+        font-size: 25px;
+        margin-bottom: 12px;
     }
 
-    .note-actions a {
-        display: inline-block;
-        margin-right: 12px;
-        margin-top: 10px;
+    .note-card h3 {
+        font-size: 21px;
+        font-weight: 700;
+        color: #456653;
+        margin-bottom: 12px;
+    }
+
+    .note-card p {
+        line-height: 1.7;
+        color: #65786d;
+        font-size: 14px;
+    }
+
+    .note-date {
+        font-size: 12px !important;
+        color: #899990 !important;
+        margin-top: 18px;
+        border-top: 1px solid rgba(120, 150, 130, 0.2);
+        padding-top: 12px;
+    }
+
+    /* ACTION BUTTONS */
+    .note-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+        .note-actions a {
+            display: inline-block;
+            padding: 7px 17px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+    .edit-button {
+        background: #d3e9fa;
+        color: #416b91 !important;
+        border: 1px solid #b5d7f0;
+    }
+
+    .delete-button {
+        background: #f9dede;
+        color: #a65d5d !important;
+        border: 1px solid #efc3c3;
+    }
+
+    .edit-button:hover {
+        background: #b9ddf5;
+    }
+
+    .delete-button:hover {
+        background: #f2c5c5;
+    }
+
+    /* EMPTY NOTES */
+    .empty-notes {
+        text-align: center;
+        background: #f0f8f3;
+        border: 2px dashed #b9d9c3;
+        border-radius: 20px;
+        padding: 45px 20px;
+        color: #698273;
+        grid-column: 1 / -1;
+    }
+
+        .empty-notes .empty-icon {
+            font-size: 45px;
+            margin-bottom: 12px;
+        }
+
+        .notes-header h1 {
+            font-size: 28px;
+        }
     }
 </style>
 
 <div class="notes-page">
-    <h1>My Library Notes</h1>
-    <p class="subtitle">Keep track of reminders and library tasks.</p>
 
-    <a asp-action="Create" class="add-button">+ Add Note</a>
+    <!-- HEADER -->
+    <div class="notes-header">
+        <div class="decoration">🌷 📖 🌿</div>
+        <h1>My Library Notes</h1>
+        <p class="subtitle">
+            A little space for your thoughts, reminders, and favorite books.
+        </p>
+    </div>
 
+    <!-- ADD NOTE -->
+    <a asp-action="Create" class="add-button">
+        ✚ Create a New Note
+    </a>
+
+    <!-- NOTES -->
     <div class="notes-grid">
-        @foreach (var note in Model)
-        {
-            <div class="note-card">
-                <h3>@note.Title</h3>
-                <p>@(string.IsNullOrWhiteSpace(note.Body) ? "No details added." : note.Body)</p>
-                <p class="note-date">Created: @note.CreatedOn.ToString("MMM dd, yyyy")</p>
 
-                <div class="note-actions">
-                    <a asp-action="Edit" asp-route-id="@note.NoteId">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@note.NoteId">Delete</a>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var note in Model)
+            {
+                <div class="note-card">
+
+                    <div class="note-decoration">📝</div>
+
+                    <h3>@note.Title</h3>
+
+                    <p>
+                        @(string.IsNullOrWhiteSpace(note.Body)
+                            ? "No details added yet."
+                            : note.Body)
+                    </p>
+
+                    <p class="note-date">
+                        📅 Created: @note.CreatedOn.ToString("MMM dd, yyyy")
+                    </p>
+
+                    <div class="note-actions">
+
+                        <a asp-action="Edit"
+                           asp-route-id="@note.NoteId"
+                           class="edit-button">
+                            ✎ Edit
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-route-id="@note.NoteId"
+                           class="delete-button">
+                            🗑 Delete
+                        </a>
+
+                    </div>
+
                 </div>
+            }
+        }
+        else
+        {
+            <div class="empty-notes">
+                <div class="empty-icon">📔</div>
+                <h3>No notes yet!</h3>
+                <p>Your library notebook is waiting for your first note.</p>
             </div>
         }
+
     </div>
+
 </div>
